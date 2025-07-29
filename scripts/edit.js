@@ -2,7 +2,7 @@ addEventListener("DOMContentLoaded", async function(){
     document.querySelector("#updateBtn").addEventListener("click", updateSong)
     const urlparam = new URLSearchParams(window.location.search)
     const songID = urlparam.get('id')
-    const response = await fetch("http://localhost:3000/api/songs/" + songID)
+    const response = await fetch("https://backend-ap4c.onrender.com/api/songs/" + songID)
     if(response.ok){
         let song = await response.json()
         document.querySelector("#songId").value = song._id
@@ -25,7 +25,7 @@ async function updateSong() {
         popularity: document.querySelector("#popularity").value,
         genre: document.querySelector("#genre").value ? document.querySelector("#genre").value.split(",") : []
     }
-    const response = await fetch("http://localhost:3000/api/songs/" + songID, {
+    const response = await fetch("https://backend-ap4c.onrender.com/api/songs/" + songID, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
